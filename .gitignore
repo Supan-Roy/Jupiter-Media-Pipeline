@@ -1,0 +1,90 @@
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+
+.venv/
+venv/
+env/
+ENV/
+
+build/
+dist/
+*.egg-info/
+*.egg
+.eggs/
+MANIFEST
+
+.pytest_cache/
+.coverage
+.coverage.*
+coverage.xml
+htmlcov/
+*.xml           # junit/xunit reports
+nosetests.xml
+
+.mypy_cache/
+.dmypy.json
+.pyright/
+pyrightconfig.json
+
+.ruff_cache/
+
+.ipynb_checkpoints/
+*.ipynb
+
+.env
+.env.*
+*.env
+secrets.json
+secrets.yaml
+
+*.log
+*.tmp
+*.temp
+tmp/
+temp/
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Linux
+*~
+
+# ── Editor / IDE files ─────────────────────────
+# VSCode
+.vscode/
+*.code-workspace
+
+# JetBrains (PyCharm, etc.)
+.idea/
+*.iml
+
+# Vim / Neovim
+*.swp
+*.swo
+[._]*.s[a-v][a-z]
+[._]*.sw[a-p]
+
+# Emacs
+\#*\#
+.\#*
+
+# ── Media output / generated artifacts ────────
+output/
+*.mp4
+*.mp3
+*.wav
+*.srt
+*.vtt
+*.ass
+*.ssa
+*.json.bak
