@@ -79,12 +79,12 @@ $RECYCLE.BIN/
 .\#*
 
 # ── Media output / generated artifacts ────────
-output/
-*.mp4
-*.mp3
-*.wav
-*.srt
-*.vtt
-*.ass
-*.ssa
-*.json.bak
+# output/
+# *.mp4
+# *.mp3
+# *.wav
+# *.srt
+# *.vtt
+# *.ass
+# *.ssa
+# *.json.bak
