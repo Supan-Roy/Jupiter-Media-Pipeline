@@ -1,106 +1,91 @@
-# Jupiter Media Pipeline
+Jupiter Media Pipeline
 
-> A reusable Python framework for building AI-powered media processing systems.
+A reusable Python framework for building AI-powered media processing systems.
 
 ![Python](https://img.shields.io/badge/Python-3.10%2B-blue?logo=python&logoColor=white)
 ![License](https://img.shields.io/badge/License-MIT-green)
-![Tests](https://img.shields.io/badge/Tests-passing-brightgreen)
-![Status](https://img.shields.io/badge/Status-Early%20Development-orange)
 
 ---
 
-Jupiter Media Pipeline provides a modular, extensible architecture for timed text handling, subtitle generation, lyrics synchronization, media transcription, and future AI dubbing workflows.
+This repository provides `jupiter_media`, a small toolkit for timed-text workflows (subtitles, lyrics) including:
 
-It is designed to serve as a shared foundation for media applications such as:
+- core timeline models (`jupiter_media.core`)
+- exporters for `.srt` and `.lrc`
+- an adapter for Whisper-style transcription (via `faster-whisper`)
+- audio extraction helper and example scripts
 
-- **Jupiter Player** — a full-featured media player
-- **Cadence Music Player** — a music-focused playback application
-
----
-
-## Features
-
-- **Timeline-based segment system** — precise `start`/`end` timed text segments
-- **Reusable data structures** — shared subtitle and lyrics models
-- **Extensible adapter architecture** — plug in new AI/transcription backends easily
-- **Export support** — built-in exporters for `.srt`, `.lrc`, and more
-- **Testable & scalable** — clean project layout ready for CI/CD
-
----
-
-## Planned Features
-
-| Feature | Status |
-|---|---|
-| Audio extraction pipeline | Planned |
-| Whisper transcription adapter | Planned |
-| Subtitle exporters (`.srt`, `.vtt`) | Planned |
-| Lyrics synchronization (`.lrc`) | Planned |
-| Translation pipeline | Planned |
-| AI dubbing support | Planned |
-| Offline AI processing | Planned |
-
----
-
-## Project Structure
-
-```text
-jupiter_media_pipeline/
-│
-├── core/           # Core data models (Timeline, TimelineSegment, ...)
-├── adapters/       # AI/transcription backend adapters
-├── exporters/      # Format exporters (.srt, .lrc, .vtt, ...)
-├── utils/          # Shared utility functions
-├── tests/          # Pytest test suite
-├── examples/       # Usage examples and demos
-└── conftest.py     # Pytest root configuration
-```
+The project ships as the `jupiter-media` Python package (package name: `jupiter-media`).
 
 ---
 
 ## Installation
 
-```bash
-# Clone the repository
-git clone https://github.com/your-org/jupiter-media-pipeline.git
-cd jupiter-media-pipeline
+Install from PyPI (when published):
 
-# Create and activate a virtual environment
+```bash
+pip install jupiter-media
+```
+
+For local development, build and install from source:
+
+```bash
 python -m venv .venv
 .venv\Scripts\activate        # Windows
-# source .venv/bin/activate   # macOS / Linux
-
-# Install dependencies
-pip install -r requirements.txt
+python -m pip install --upgrade pip
+python -m pip install --upgrade build twine
+python -m build
+python -m pip install dist/jupiter_media-0.1.0-py3-none-any.whl
 ```
+
+Notes:
+- `ffmpeg` is required on PATH for audio extraction.
+- Optional/extra dependencies for different adapters may be documented in the README or package metadata.
 
 ---
 
-## Running Tests
+## Usage (example)
+
+Extract audio, transcribe, and export SRT:
+
+```python
+from jupiter_media.core.audio_extractor import AudioExtractor
+from jupiter_media.adapters.whisper_adapter import WhisperAdapter
+from jupiter_media.exporters.srt_exporter import SRTExporter
+
+AudioExtractor.extract("movie.mp4", "audio.wav")
+adapter = WhisperAdapter()
+timeline = adapter.transcribe("audio.wav")
+srt = SRTExporter.export(timeline)
+print(srt)
+```
+
+There are runnable examples in the `examples/` folder:
+- [examples/transcribe_video.py](examples/transcribe_video.py)
+- [examples/export_srt.py](examples/export_srt.py)
+
+---
+
+## Testing
+
+Run the test suite locally (tests are not included in distributions):
 
 ```bash
 pytest
 ```
 
-For verbose output:
+---
 
-```bash
-pytest -v
-```
+## Packaging & Release
+
+See [RELEASE.md](RELEASE.md) for build and upload commands. A `CHANGELOG.md` is included.
 
 ---
 
-## Quick Example
+## Links
 
-```python
-from core.timeline import Timeline
-
-timeline = Timeline()
-timeline.add_segment(0.0, 2.5, "Hello, world!")
-timeline.add_segment(3.0, 6.0, "Welcome to Jupiter.")
-
-print(timeline.to_json())
-```
+- Repository: https://github.com/Supan-Roy/Jupiter-Media-Pipeline
+- Homepage: https://supanroy.com
+- Changelog: [CHANGELOG.md](CHANGELOG.md)
 
 ---
 
@@ -108,5 +93,4 @@ print(timeline.to_json())
 
 This project is licensed under the **MIT License**.
 
-&copy; 2026 Jupiter Sonic Labs. All Rights Reserved.  
-Author: Supan Roy
+© 2026 Jupiter Sonic Labs — Author: Supan Roy ([contact@supanroy.com](mailto:contact@supanroy.com))
