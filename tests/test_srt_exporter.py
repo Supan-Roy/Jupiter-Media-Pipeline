@@ -1,5 +1,5 @@
-from core.timeline import Timeline
-from exporters.srt_exporter import SRTExporter
+from jupiter_media.core.timeline import Timeline
+from jupiter_media.exporters.srt_exporter import SRTExporter
 
 def test_srt_export():
     timeline = Timeline()

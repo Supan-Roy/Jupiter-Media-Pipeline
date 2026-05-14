@@ -1,6 +1,10 @@
 # Supan Roy (13 May, 2026)
 # © 2026 Jupiter Sonic Labs. All Rights Reserved
-from core.timeline import Timeline
+from ..core.timeline import Timeline
+import logging
+from ..exceptions import ExportError
+
+logger = logging.getLogger(__name__)
 
 class LRCExporter:
     @staticmethod
@@ -14,6 +18,10 @@ class LRCExporter:
     
     @classmethod
     def export(cls, timeline: Timeline) -> str:
+        if not isinstance(timeline, Timeline):
+            logger.error("LRC export received invalid timeline: %r", type(timeline))
+            raise ExportError("Provided object is not a Timeline")
+
         timeline.sort()
 
         lines = []
@@ -25,4 +33,6 @@ class LRCExporter:
                 f"[{timestamp}]{segment.text}"
             )
 
-        return "\n".join(lines)
+        result = "\n".join(lines)
+        logger.debug("Exported LRC with %d entries", len(timeline))
+        return result

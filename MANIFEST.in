@@ -1,0 +1,7 @@
+# Exclude tests from source distributions
+prune tests
+recursive-exclude tests *
+
+# Keep examples and README
+include README.md
+recursive-include examples *.py

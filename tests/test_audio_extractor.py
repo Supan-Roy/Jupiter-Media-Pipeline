@@ -1,7 +1,7 @@
 # Supan Roy (13 May, 2026)
 # © 2026 Jupiter Sonic Labs. All Rights Reserved
 from pathlib import Path
-from core.audio_extractor import AudioExtractor
+from jupiter_media.core.audio_extractor import AudioExtractor
 
 def test_audio_extraction():
     input_file = "tests/assets/netflix-logo-animation-2019.mp4"

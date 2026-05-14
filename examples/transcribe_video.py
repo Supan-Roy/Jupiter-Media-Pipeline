@@ -1,0 +1,48 @@
+"""Example: extract audio from a video, transcribe, and export SRT.
+
+Usage:
+    python examples/transcribe_video.py input_video.mp4 output.srt
+"""
+import argparse
+import logging
+import tempfile
+from pathlib import Path
+
+from jupiter_media.core.audio_extractor import AudioExtractor
+from jupiter_media.adapters.whisper_adapter import WhisperAdapter
+from jupiter_media.exporters.srt_exporter import SRTExporter
+
+
+def main():
+    logging.basicConfig(level=logging.INFO)
+
+    parser = argparse.ArgumentParser(description="Transcribe video and export SRT")
+    parser.add_argument("input", help="Input video file")
+    parser.add_argument("output", help="Output SRT file")
+    args = parser.parse_args()
+
+    input_path = Path(args.input)
+    output_path = Path(args.output)
+
+    with tempfile.NamedTemporaryFile(suffix=".wav", delete=False) as tmp:
+        audio_path = Path(tmp.name)
+
+    try:
+        AudioExtractor.extract(input_path, audio_path)
+
+        adapter = WhisperAdapter()
+        timeline = adapter.transcribe(audio_path)
+
+        srt = SRTExporter.export(timeline)
+        output_path.write_text(srt, encoding="utf-8")
+
+        print(f"Wrote SRT to: {output_path}")
+    finally:
+        try:
+            audio_path.unlink()
+        except Exception:
+            pass
+
+
+if __name__ == "__main__":
+    main()

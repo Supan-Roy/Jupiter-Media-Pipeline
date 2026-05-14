@@ -1,6 +1,10 @@
 # Supan Roy (12 May, 2026)
 # © 2026 Jupiter Sonic Labs. All Rights Reserved
-from core.timeline import Timeline
+from ..core.timeline import Timeline
+import logging
+from ..exceptions import ExportError
+
+logger = logging.getLogger(__name__)
 
 class SRTExporter:
     @staticmethod
@@ -22,6 +26,10 @@ class SRTExporter:
     
     @classmethod
     def export(cls, timeline: Timeline) -> str:
+        if not isinstance(timeline, Timeline):
+            logger.error("SRT export received invalid timeline: %r", type(timeline))
+            raise ExportError("Provided object is not a Timeline")
+
         lines = []
 
         timeline.sort()
@@ -34,5 +42,7 @@ class SRTExporter:
             lines.append(f"{start} --> {end}")
             lines.append(segment.text)
             lines.append("")
-        
-        return "\n".join(lines)
+
+        result = "\n".join(lines)
+        logger.debug("Exported SRT with %d entries", len(timeline))
+        return result

@@ -1,4 +1,4 @@
-from core.timeline import Timeline
+from jupiter_media.core.timeline import Timeline
 
 def test_add_segment():
     timeline = Timeline()

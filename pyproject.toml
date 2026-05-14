@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "jupiter-media"
+version = "0.1.0"
+description = "Reusable AI-powered media intelligence pipeline for subtitles, lyrics, and transcription workflows."
+readme = { file = "README.md", content-type = "text/markdown" }
+requires-python = ">=3.10"
+license = "MIT"
+
+authors = [
+    { name = "Supan Roy", email = "contact@supanroy.com" }
+]
+
+dependencies = [
+    "faster-whisper"
+]
+
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.10",
+    "Topic :: Multimedia :: Sound/Audio",
+    "Topic :: Software Development :: Libraries",
+]
+
+keywords = ["transcription", "subtitles", "srt", "lrc", "whisper", "audio"]
+
+[project.urls]
+Homepage = "https://supanroy.com"
+Repository = "https://github.com/Supan-Roy/Jupiter-Media-Pipeline"
+Changelog = "https://github.com/Supan-Roy/Jupiter-Media-Pipeline/blob/main/CHANGELOG.md"
+
+[tool.setuptools.packages.find]
+where = ["jupiter_media"]
+exclude = ["tests*"]

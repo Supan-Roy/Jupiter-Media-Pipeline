@@ -1,7 +1,7 @@
 # Supan Roy (13 May, 2026)
 # © 2026 Jupiter Sonic Labs. All Rights Reserved
-from core.timeline import Timeline
-from exporters.lrc_exporter import LRCExporter
+from jupiter_media.core.timeline import Timeline
+from jupiter_media.exporters.lrc_exporter import LRCExporter
 
 def test_lrc_export():
     timeline = Timeline()

@@ -1,7 +1,7 @@
 # Supan Roy (14 May, 2026)
 # © 2026 Jupiter Sonic Labs. All Rights Reserved
-from adapters.whisper_adapter import WhisperAdapter
-from core.timeline import Timeline
+from jupiter_media.adapters.whisper_adapter import WhisperAdapter
+from jupiter_media.core.timeline import Timeline
 
 def test_whisper_transcription():
     adapter = WhisperAdapter(
