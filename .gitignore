@@ -88,3 +88,9 @@ $RECYCLE.BIN/
 # *.ass
 # *.ssa
 # *.json.bak
+
+# Examples media assets
+/examples/*.mp4
+/examples/*.mkv
+/examples/**/*.mp4
+/examples/**/*.mkv

@@ -36,5 +36,6 @@ Repository = "https://github.com/Supan-Roy/Jupiter-Media-Pipeline"
 Changelog = "https://github.com/Supan-Roy/Jupiter-Media-Pipeline/blob/main/CHANGELOG.md"
 
 [tool.setuptools.packages.find]
-where = ["jupiter_media"]
+where = ["."]
 exclude = ["tests*"]
+include = ["jupiter_media*"]
