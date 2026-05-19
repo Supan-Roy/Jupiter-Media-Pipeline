@@ -2,7 +2,7 @@
 
 All notable changes to this project are documented in this file.
 
-## [0.1.0] - 2026-05-14
+## [0.1.0] - 2026-05-19
 - Initial public release (0.1.0).
 - Introduced `jupiter_media` top-level package layout.
 - Added custom exceptions (`jupiter_media/exceptions.py`).

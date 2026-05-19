@@ -77,7 +77,14 @@ pytest
 
 ## Packaging & Release
 
-See [RELEASE.md](RELEASE.md) for build and upload commands. A `CHANGELOG.md` is included.
+See [RELEASE.md](RELEASE.md) for the release process. GitHub Actions handles pull-request checks and tagged publishes, so future updates can be shipped from GitHub with a version bump, tag, and release.
+
+## GitHub Workflow
+
+1. Create a feature branch and open a pull request.
+2. Merge to `main` after CI passes.
+3. For a release, update the version in `pyproject.toml` and the changelog, then create and push a tag such as `v0.1.1`.
+4. The tagged push publishes the package to PyPI and creates a GitHub release.
 
 ---
 

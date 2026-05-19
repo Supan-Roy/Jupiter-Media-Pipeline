@@ -1,32 +1,25 @@
 # RELEASE
 
-Build and publish the package to PyPI.
+Release builds are published from GitHub tags.
 
-1. Create source and wheel distributions:
+## Local checks
+
+Before tagging a release, verify the package locally:
 
 ```bash
 python -m build
-```
-
-2. Validate metadata and distributions locally:
-
-```bash
 python -m pip install --upgrade twine
 python -m twine check dist/*
 ```
 
-3. Upload to Test PyPI first (recommended):
+## GitHub release flow
 
-```bash
-python -m twine upload --repository testpypi dist/*
-```
+1. Update the version in `pyproject.toml`.
+2. Update `CHANGELOG.md` with the new release entry.
+3. Commit and push the change to `main`.
+4. Create a tag such as `v0.1.1` and push it to GitHub.
+5. GitHub Actions builds the distributions, publishes to PyPI, and creates the GitHub release.
 
-4. Once validated, upload to PyPI:
+The repository is configured to use GitHub Actions for PR checks and tagged release publishing, so there is no manual PyPI upload step during normal releases.
 
-```bash
-python -m twine upload dist/*
-```
-
-Notes:
-- Ensure you have updated `pyproject.toml` with correct metadata and `README.md`.
-- Use API tokens (recommended) rather than username/password when uploading.
+One-time setup still required: enable PyPI trusted publishing for this GitHub repository in the PyPI project settings so the publish job can authenticate securely.
